@@ -1,0 +1,44 @@
+.menu{
+    opacity: 90%;
+    background-color: rgb(66, 134, 35);
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    }
+    
+    .menu a{
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    }
+    
+    .menu a:hover{
+    color: #504b4b;
+    }
+
+.contact{
+    opacity: 90%;
+    background-color: rgb(156, 46, 46);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    }
+            
+    .contact a{
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    }
+    
+    .cree{
+        bottom: 0px;
+        right: 8px;
+        font-size: 14px;
+        color: #948282;
+        font-weight: bold;
+        }

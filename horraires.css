@@ -1,0 +1,39 @@
+/* Pour centrer la modale dans la page */
+body{
+    height: 100%; /* Assure que le body et html prennent toute la hauteur */
+    margin: 0; /* Supprime les marges par défaut */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    background-color: #f4f4f4; /* Couleur de fond */
+    background-image: url(italie2.jpg);
+}
+
+.modale-horraires {
+    background-color: #b39f9f;
+    font-weight: bold;
+    border-radius: 3%;
+    text-align: center;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+    margin: 2%;   
+}
+
+
+.align {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    width: 100%; 
+    margin-bottom: 20px;
+}
+
+.align label {
+    width: 30%; 
+    font-size: 1rem;
+    margin-right: 15px;
+    text-align: left; 
+}

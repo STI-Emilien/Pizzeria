@@ -1,0 +1,202 @@
+body {
+    height: 100%;
+    margin: 0;
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    background-image: url(italie2.jpg);
+}
+
+.formu-container{
+    margin: 40px;
+    align-items: center;
+    max-width: 100%;
+    }
+    
+.commande{
+    text-align: center;
+    
+}
+
+.modale-commande{
+    padding: 7%;
+    font-weight: bold;
+    border-radius: 3%;
+    background-color: #b39f9f;
+}    
+    
+.modale-commande {
+    display: flex;
+    flex-direction: column;
+    align-items: auto;
+    max-width: 550px;
+    margin: auto;
+    text-align: center;
+}
+    
+   /* Section générale de la modale */
+.modale-commande {
+    padding: 7%;
+    font-weight: bold;
+    border-radius: 3%;
+    background-color: #b39f9f;
+}
+
+/* Section des pizzas */
+.pizzas-section {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: none; /* Enlève la bordure en bas */
+}
+
+
+/* Card de chaque pizza */
+.pizza-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border: 2px solid red; /* Bords rouges */
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fafafa;
+    transition: background-color 0.3s ease;
+}
+
+.pizza-card:hover {
+    background-color: #f0f0f0;
+}
+
+.pizza-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+/* Information de la pizza : nom et prix */
+.pizza-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pizza-info h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.pizza-prix {
+    font-size: 1rem;
+    color: red; /* Prix en rouge */
+}
+
+/* Modification du bouton */
+.boutonc {
+    background-color: #e60000;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 0px 0px 8px 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.boutonc:hover {
+    background-color: #a33030;
+}
+
+
+/* Bouton "Moins" pour supprimer un article */
+.moins {
+    background-color: #e60000;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 90%;
+    cursor: pointer;
+  }
+  
+  .moins:hover {
+    background-color: #cc0000;
+  }
+
+/* Horaires.html */ 
+
+.modale-horraires {
+    background-color: #b39f9f; 
+    color: #362f2f;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    width: 350px;
+    margin: 50px auto; 
+    line-height: 1.6; /* Espacement entre les lignes */
+}
+
+/* Menu */
+.menu {
+    background-color: rgb(66, 134, 35); /* Couleur de fond */
+    padding: 12px;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px; /* Coins arrondis */
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease; /* Transition douce */
+}
+
+.menu a:hover {
+    color: #d1d1d1; /* Couleur plus claire au survol */
+}
+/* Section Contact tout en bas */
+.contact {
+    background-color: rgb(156, 46, 46); /* Fond rouge */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 98.4%; /* Prend toute la largeur */
+    bottom: 0; /* Positionné tout en bas */
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Ombre au-dessus */
+}
+
+.contact a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.contact a:hover {
+    color: #d1d1d1; /* Couleur plus claire au survol */
+}
+
+.cree {
+    font-size: 14px;
+    color: #948282;
+    font-weight: bold;
+    margin-top: 10px; /* Ajout d'un peu d'espace */
+}
+

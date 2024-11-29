@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria Bisson - commande</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="commande.css">
+    <link rel="icon" href="favicon-1.png" sizes="32x32">
+    <style>
+        body {
+            background-image: url('italie2.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <h1>Commander une Pizza</h1>
+                <a href="accueil.html">Retour à l'accueil</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="formu-container">
+            <form id="commandeForm" class="modale-commande">
+                <h2>Votre commande :</h2>
+
+                <!-- Choix du mode de commande -->
+                <div class="form-group">
+                    <p>Mode de commande :</p>
+                    <label>
+                        <input type="radio" class="txtF" name="mode" id="emporter" required>A emporter
+                    </label>
+                    <label>
+                        <input type="radio" class="txtF" name="mode" id="livraison" required>Livraison
+                    </label>
+                </div>
+
+                <!-- Section des pizzas -->
+                <div class="pizzas-section">
+                    <h3>Récapitulatif de votre commande :</h3>
+
+                    <!-- Pizza Six Fromages -->
+                    <div class="pizza-card">
+                        <img src="Sixfro.png" alt="Pizza Six Fromages" class="pizza-img">
+                        <div class="pizza-info">
+                            <h4>Pizza Six Fromages</h4>
+                            <p >Taille : Grande</p>
+                            <p class="pizza-prix">Prix : <span class="price">17,50€</span></p>
+                            <button class="moins">-</button>
+                        </div>
+                    </div>
+
+                    <!-- Pizza Provençale -->
+                    <div class="pizza-card">
+                        <img src="provencale.png" alt="Pizza Provençale" class="pizza-img">
+                        <div class="pizza-info">
+                            <h4>Pizza Provençale</h4>
+                            <p>Taille : Moyenne</p>
+                            <p class="pizza-prix">Prix : 12€</p>
+                            <button type="debug" class="moins">-</button>
+                        </div>
+                    </div>
+
+
+                     <!-- Pizza Bissone gratuite -->
+                     <div class="pizza-card">
+                        <img src="Bissone.png" alt="Pizza Provençale" class="pizza-img">
+                        <div class="pizza-info">
+                            <h4>Pizza Bissone</h4>
+                            <p>Taille : Junior</p>
+                            <p class="pizza-prix">Prix : 0€ (gratuite)</p>
+                            <button class="moins">-</button>                            
+                        </div>
+                    </div>
+
+                    <!-- Tiramisu (pas de taille) -->
+                    <div class="pizza-card">
+                        <img src="Tiramisu (2).png" alt="Tiramisu" class="pizza-img">
+                        <div class="pizza-info">
+                            <h4>Tiramisu</h4>
+                            <p class="pizza-prix">Prix : 2€</p>
+                            <button class="moins">-</button>
+                        </div>
+                    </div>
+                    <!-- Prix Total -->
+                <div class="total-price">
+                    <p>Prix Total : 31,50€</p>
+                </div>
+                </div>
+
+                <!-- Bouton de confirmation -->
+                <button class="boutonc" id="paiement" type="submit">Commander</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contact">
+            <h1>Nous contacter !</h1>
+            <p>Tél : 01.02.03.04.05</p>
+            <p>Email : Pizzeria.bisson@gmail.com</p>
+            <div class="cree">
+                <p>Créé par Emilien Bisson</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="commande.js"></script>
+</body>
+</html>

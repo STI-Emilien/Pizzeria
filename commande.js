@@ -100,7 +100,7 @@ function afficherPanier() {
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
         } else if (nomLower.includes('forestière')) {
-            imageSrc = 'Forêstière.png';
+            imageSrc = 'Foréstière.png';
         } else if (nomLower.includes('chorizo')) {
             imageSrc = 'Chorizo.png';
         } else if (nomLower.includes('norvégienne')) {

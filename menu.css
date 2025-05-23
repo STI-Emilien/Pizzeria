@@ -38,7 +38,6 @@ footer {
   font-weight: bold;
 }
 
-
 /* Header (barre verte) */
 header {
   width: 100%;
@@ -89,9 +88,8 @@ header {
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px 20px;
-  align-items: center;
+  align-items: stretch; /* Force toutes les cartes à avoir la même hauteur */
   margin: 40px 0;
-
 }
 
 /* Style des cartes */
@@ -100,11 +98,18 @@ header {
   border-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  align-items: center;
   border: 5px solid #e60000;
   width: 100%;
   max-width: 300px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style spécifique pour les cartes de desserts */
+.menu-container2 .carte {
+  min-height: 350px; /* Hauteur minimale pour uniformiser */
+  justify-content: space-between; /* Distribue l'espace uniformément */
 }
 
 /* Style des images de pizza de la carte */
@@ -116,19 +121,48 @@ header {
   margin: 20px auto;
 }
 
+/* Style spécifique pour les images de desserts */
+.menu-container2 .carte-image {
+  width: 80%;
+  max-width: 200px;
+  height: 150px; /* Hauteur fixe pour uniformiser */
+  object-fit: cover; /* Garde les proportions et coupe si nécessaire */
+  display: block;
+  margin: 20px auto;
+}
+
 /* Contenu de la carte */
 .carte-contenu {
   padding: 15px;
+  flex-grow: 1; /* Prend l'espace disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+/* Style spécifique pour le contenu des desserts */
+.menu-container2 .carte-contenu {
+  text-align: center;
+  justify-content: space-between;
+}
+
 .carte-contenu h3 {
   font-size: 18px;
   margin: 0 0 15px;
 }
+
+/* Style spécifique pour les titres de desserts */
+.menu-container2 .carte-contenu h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
 .Ingredients {
   list-style: none; /* Pour ne pas mettre la puce */
   padding: 0;
   margin: 0 0 15px;
 }
+
 .gras {
   font-weight: bold;
 }
@@ -138,7 +172,15 @@ header {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+  margin: 10px 0;
 }
+
+/* Style spécifique pour le prix des desserts */
+.menu-container2 .promo {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
 .ajouter-panier {
   background: #e60000;
   color: #fff;
@@ -149,6 +191,7 @@ header {
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.3s ease; /* Animation jolie pour le HOVER */
+  margin-top: auto; /* Pousse le bouton vers le bas */
 }
 
 .ajouter-panier:hover {
@@ -158,7 +201,11 @@ header {
 /* responsive */
 @media (max-width: 600px) {
   .menu-container {
-      grid-template-columns: 1fr; /* Une seule colonne */
+    grid-template-columns: 1fr; /* Une seule colonne */
+  }
+  
+  .menu-container2 {
+    grid-template-columns: 1fr; /* Une seule colonne pour les desserts aussi */
   }
 }
 
@@ -173,6 +220,7 @@ header {
   width: 60px;
   height: 60px;
   cursor: pointer;
+  border: none;
 }
 
 #cart-button img {
@@ -210,7 +258,7 @@ button:hover {
   background-color: #cc0000;
 }
 
-.taille{
+.taille {
   border: none;
   background-color: rgb(228, 215, 215);
   border-radius: 6px;
@@ -227,7 +275,7 @@ button:hover {
   height: auto;
 }
 
-.textbeau{
+.textbeau {
   align-items: center;
   font-weight: bold;
   color: white;

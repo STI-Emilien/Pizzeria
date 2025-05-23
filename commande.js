@@ -99,7 +99,7 @@ function afficherPanier() {
             imageSrc = 'provencale.png';
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
-        } else if (nomLower.includes('Foréstière')) {
+        } else if (nomLower.includes('forestière')) {
             imageSrc = 'pizza1.png';
         } else if (nomLower.includes('chorizo')) {
             imageSrc = 'Chorizo.png';

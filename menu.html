@@ -7,6 +7,359 @@
   <link rel="stylesheet" href="menu.css">
   <link rel="icon" href="favicon-1.png" sizes="32x32">
 </head>
+<script> 
+let panier = []; 
+
+// Définition des prix des pizzas et desserts
+const prix = {
+  // Pizza Provençale
+  'JuniorP': 8.00,
+  'MoyenneP': 12.00,
+  'MégaP': 16.00,
+  
+  // Pizza Forestière
+  'JuniorF': 9.00,
+  'MoyenneF': 13.00,
+  'MégaF': 17.00,
+  
+  // Pizza Chorizo
+  'JuniorC': 8.50,
+  'NormaleC': 12.50,
+  'MégaC': 16.50,
+  
+  // Pizza Bissone
+  'JuniorB': 10.00,
+  'NormaleB': 14.00,
+  'MégaB': 18.00,
+  
+  // Pizza Six Fromages
+  'JuniorS': 9.50,
+  'NormaleS': 13.50,
+  'MégaS': 17.50,
+  
+  // Pizza Norvégienne
+  'JuniorN': 11.00,
+  'NormaleN': 15.00,
+  'MégaN': 19.00,
+  
+  // Pizza Savoyarde
+  'JuniorSav': 9.00,
+  'NormaleSav': 13.00,
+  'MégaSav': 17.00,
+  
+  // Pizza Saumon
+  'JuniorSa': 10.50,
+  'NormaleSa': 14.50,
+  'MégaSa': 18.50,
+  
+  // Pizza Campagnarde (utilise les mêmes codes que Chorizo)
+  // 'JuniorC': 8.50, // Déjà défini
+  // 'NormaleC': 12.00, // Prix différent dans le HTML
+  // 'MégaC': 16.00,   // Prix différent dans le HTML
+  
+  // Desserts
+  'Tiramisu': 2.00,
+  'Panettone': 2.00,
+  'Panacota': 2.00
+};
+
+// Fonction pour sauvegarder le panier
+function sauvegarderPanier() {
+  // Version localStorage (à décommenter pour votre environnement)
+  // localStorage.setItem('panier', JSON.stringify(panier));
+  
+  // Mettre à jour le compteur du panier
+  mettreAJourCompteurPanier();
+}
+
+// Fonction pour mettre à jour le compteur du panier
+function mettreAJourCompteurPanier() {
+  const cartButton = document.getElementById('cart-button');
+  const totalItems = panier.reduce((total, item) => total + item.quantite, 0);
+  
+  // Ajouter un badge avec le nombre d'articles
+  let badge = cartButton.querySelector('.cart-badge');
+  if (!badge) {
+    badge = document.createElement('span');
+    badge.className = 'cart-badge';
+    badge.style.cssText = `
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #cc0000;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    `;
+    cartButton.appendChild(badge);
+  }
+  
+  badge.textContent = totalItems;
+  badge.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+// Fonction pour ajouter un article au panier
+function ajouterAuPanier(nom, taille, prix) {
+  const article = {
+    nom: nom,
+    taille: taille,
+    prix: prix,
+    quantite: 1,
+    id: `${nom}_${taille}_${Date.now()}`
+  };
+  
+  panier.push(article);
+  sauvegarderPanier();
+  
+  // Afficher une confirmation
+  alert(`${nom} (${taille}) ajouté au panier !`);
+}
+
+// Fonction pour gérer les clics sur les boutons "Ajouter au panier"
+function gererClicPanier(event) {
+  const bouton = event.target;
+  const carte = bouton.closest('.carte');
+  
+  // Récupérer le nom de la pizza/dessert
+  const nom = carte.querySelector('h3').textContent;
+  
+  // Vérifier si c'est un dessert (pas de select de taille)
+  const selectTaille = carte.querySelector('select');
+  if (!selectTaille) {
+    // C'est un dessert
+    const prixDessert = prix[nom] || 2.00;
+    ajouterAuPanier(nom, 'Unique', prixDessert);
+    return;
+  }
+  
+  // C'est une pizza, récupérer la taille sélectionnée
+  const optionSelectionnee = selectTaille.options[selectTaille.selectedIndex];
+  const codeTaille = optionSelectionnee.value;
+  const texteTaille = optionSelectionnee.textContent;
+  
+  // Extraire la taille et le prix du texte
+  const taille = texteTaille.split(' : ')[0];
+  const prixPizza = prix[codeTaille];
+  
+  if (prixPizza) {
+    ajouterAuPanier(nom, taille, prixPizza);
+  } else {
+    alert('Erreur : prix non trouvé pour cette pizza');
+  }
+}
+
+// Fonction pour créer et afficher la modale du panier
+function afficherPanier() {
+  // Supprimer la modale existante si elle existe
+  const modaleExistante = document.getElementById('modale-panier');
+  if (modaleExistante) {
+    modaleExistante.remove();
+  }
+  
+  // Créer la modale
+  const modale = document.createElement('div');
+  modale.id = 'modale-panier';
+  modale.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  `;
+  
+  // Contenu de la modale
+  const contenuModale = document.createElement('div');
+  contenuModale.style.cssText = `
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  `;
+  
+  // Bouton fermer
+  const boutonFermer = document.createElement('button');
+  boutonFermer.innerHTML = '✕';
+  boutonFermer.style.cssText = `
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+  `;
+  
+  // Titre
+  const titre = document.createElement('h2');
+  titre.textContent = 'Mon Panier';
+  titre.style.cssText = `
+    margin: 0 0 20px 0;
+    color: #e60000;
+    font-size: 24px;
+    text-align: center;
+  `;
+  
+  // Contenu du panier
+  const listePanier = document.createElement('div');
+  
+  if (panier.length === 0) {
+    listePanier.innerHTML = `
+      <p style="text-align: center; color: #666; font-size: 18px; margin: 40px 0;">
+        Votre panier est vide
+      </p>
+    `;
+  } else {
+    let total = 0;
+    let htmlPanier = '';
+    
+    panier.forEach((article, index) => {
+      total += article.prix * article.quantite;
+      htmlPanier += `
+        <div style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px;
+          border-bottom: 1px solid #eee;
+          margin-bottom: 10px;
+        ">
+          <div>
+            <strong style="color: #333;">${article.nom}</strong><br>
+            <small style="color: #666;">Taille: ${article.taille}</small>
+          </div>
+          <div style="text-align: right;">
+            <div style="color: #e60000; font-weight: bold; font-size: 16px;">
+              ${article.prix.toFixed(2)}€
+            </div>
+            <button onclick="supprimerDuPanier(${index})" style="
+              background: #ff4444;
+              color: white;
+              border: none;
+              padding: 5px 10px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 12px;
+              margin-top: 5px;
+            ">Supprimer</button>
+          </div>
+        </div>
+      `;
+    });
+    
+    // Total
+    htmlPanier += `
+      <div style="
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 2px solid #e60000;
+      ">
+        <h3 style="color: #e60000; margin: 0 0 15px 0;">
+          Total: ${total.toFixed(2)}€
+        </h3>
+        <button onclick="viderPanier()" style="
+          background: #ff6666;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-right: 10px;
+        ">Vider le panier</button>
+        <button onclick="window.location.href='commande.html'" style="
+          background: #e60000;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+        ">Commander</button>
+      </div>
+    `;
+    
+    listePanier.innerHTML = htmlPanier;
+  }
+  
+  // Assembler la modale
+  contenuModale.appendChild(boutonFermer);
+  contenuModale.appendChild(titre);
+  contenuModale.appendChild(listePanier);
+  modale.appendChild(contenuModale);
+  
+  // Ajouter au DOM
+  document.body.appendChild(modale);
+  
+  // Événements pour fermer la modale
+  boutonFermer.onclick = () => modale.remove();
+  modale.onclick = (e) => {
+    if (e.target === modale) modale.remove();
+  };
+}
+
+// Fonction pour supprimer un article du panier
+function supprimerDuPanier(index) {
+  panier.splice(index, 1);
+  sauvegarderPanier();
+  afficherPanier(); // Rafraîchir la modale
+}
+
+// Fonction pour vider le panier
+function viderPanier() {
+  if (confirm('Êtes-vous sûr de vouloir vider le panier ?')) {
+    panier = [];
+    sauvegarderPanier();
+    afficherPanier(); // Rafraîchir la modale
+  }
+}
+
+// Initialisation quand la page est chargée
+document.addEventListener('DOMContentLoaded', function() {
+  // Ajouter les événements sur tous les boutons "Ajouter au panier"
+  const boutonsAjouter = document.querySelectorAll('.ajouter-panier');
+  boutonsAjouter.forEach(bouton => {
+    bouton.addEventListener('click', gererClicPanier);
+  });
+  
+  // Ajouter l'événement sur le bouton du panier
+  const boutonPanier = document.getElementById('cart-button');
+  if (boutonPanier) {
+    boutonPanier.addEventListener('click', afficherPanier);
+  }
+  
+  // Mettre à jour le compteur au chargement
+  mettreAJourCompteurPanier();
+});
+
+// Fonction pour récupérer le panier (utile pour la page commande)
+function obtenirPanier() {
+  return panier;
+}
+
+// Fonction pour calculer le total du panier
+function calculerTotal() {
+  return panier.reduce((total, article) => total + (article.prix * article.quantite), 0);
+}
+</script>
 <body>
   <header>
     <!-- Barre verte en haut pour aller vers différentes pages -->
@@ -259,7 +612,7 @@
 
     <!-- Troisième dessert -->
     <div class="carte">
-        <img src="panacota (1).png" alt="panacota" class="carte-image">
+        <img src="panacota.png" alt="panacota" class="carte-image">
         <div class="carte-contenu">
           <h3>Pana cota</h3>
           <div class="price-section">

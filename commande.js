@@ -100,21 +100,21 @@ function afficherPanier() {
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
         } else if (nomLower.includes('forestière')) {
-            imageSrc = 'forestiere.png';
+            imageSrc = 'forêstiere.png';
         } else if (nomLower.includes('chorizo')) {
-            imageSrc = 'chorizo.png';
+            imageSrc = 'Chorizo.png';
         } else if (nomLower.includes('norvégienne')) {
-            imageSrc = 'norvegienne.png';
+            imageSrc = 'Norvegienne.png';
         } else if (nomLower.includes('savoyarde')) {
-            imageSrc = 'savoyarde.png';
+            imageSrc = 'Savoyarde.png';
         } else if (nomLower.includes('saumon')) {
-            imageSrc = 'saumon.png';
+            imageSrc = 'Saumon.png';
         } else if (nomLower.includes('campagnarde')) {
-            imageSrc = 'campagnarde.png';
+            imageSrc = 'Campagnarde.png';
         } else if (nomLower.includes('tiramisu')) {
             imageSrc = 'Tiramisuu.png';
         } else if (nomLower.includes('panettone')) {
-            imageSrc = 'panettone.png';
+            imageSrc = 'panetton.png';
         } else if (nomLower.includes('panacota')) {
             imageSrc = 'panacota.png';
         } else {

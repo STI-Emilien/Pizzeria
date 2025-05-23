@@ -335,21 +335,29 @@ const prix = {
   'NormaleSa': 14.50,
   'MégaSa': 18.50,
   
-  // Pizza Campagnarde (utilise les mêmes codes que Chorizo)
-  // 'JuniorC': 8.50, // Déjà défini
-  // 'NormaleC': 12.00, // Prix différent dans le HTML
-  // 'MégaC': 16.00,   // Prix différent dans le HTML
-  
   // Desserts
   'Tiramisu': 2.00,
   'Panettone': 2.00,
-  'Panacota': 2.00
+  'Pana cota': 2.00
 };
+
+// Fonction pour charger le panier depuis localStorage
+function chargerPanier() {
+  const panierSauvegarde = localStorage.getItem('panier');
+  if (panierSauvegarde) {
+    try {
+      panier = JSON.parse(panierSauvegarde);
+    } catch (e) {
+      console.error('Erreur lors du chargement du panier:', e);
+      panier = [];
+    }
+  }
+}
 
 // Fonction pour sauvegarder le panier
 function sauvegarderPanier() {
-  // Version localStorage (à décommenter pour votre environnement)
-  // localStorage.setItem('panier', JSON.stringify(panier));
+  // Sauvegarder dans localStorage
+  localStorage.setItem('panier', JSON.stringify(panier));
   
   // Mettre à jour le compteur du panier
   mettreAJourCompteurPanier();
@@ -617,6 +625,9 @@ function viderPanier() {
 
 // Initialisation quand la page est chargée
 document.addEventListener('DOMContentLoaded', function() {
+  // Charger le panier depuis localStorage
+  chargerPanier();
+  
   // Ajouter les événements sur tous les boutons "Ajouter au panier"
   const boutonsAjouter = document.querySelectorAll('.ajouter-panier');
   boutonsAjouter.forEach(bouton => {

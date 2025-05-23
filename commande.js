@@ -100,7 +100,7 @@ function afficherPanier() {
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
         } else if (nomLower.includes('Foréstière')) {
-            imageSrc = 'Foréstière.png';
+            imageSrc = 'pizza1.png';
         } else if (nomLower.includes('chorizo')) {
             imageSrc = 'Chorizo.png';
         } else if (nomLower.includes('norvégienne')) {
@@ -116,9 +116,9 @@ function afficherPanier() {
         } else if (nomLower.includes('panettone')) {
             imageSrc = 'panetton.png';
         } else if (nomLower.includes('panacota')) {
-            imageSrc = 'panar.png';
+            imageSrc = 'pizza2.png';
         } else {
-            imageSrc = 'panar.png'; // Image par défaut
+            imageSrc = 'erreur.png'; // Image par défaut
         }
         
         pizzaCard.innerHTML = `

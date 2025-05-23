@@ -99,7 +99,7 @@ function afficherPanier() {
             imageSrc = 'provencale.png';
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
-        } else if (nomLower.includes('forestière')) {
+        } else if (nomLower.includes('Foréstière')) {
             imageSrc = 'Foréstière.png';
         } else if (nomLower.includes('chorizo')) {
             imageSrc = 'Chorizo.png';
@@ -118,7 +118,7 @@ function afficherPanier() {
         } else if (nomLower.includes('panacota')) {
             imageSrc = 'panar.png';
         } else {
-            imageSrc = 'Foréstière.png'; // Image par défaut
+            imageSrc = 'panar.png'; // Image par défaut
         }
         
         pizzaCard.innerHTML = `

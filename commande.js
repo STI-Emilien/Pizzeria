@@ -118,7 +118,7 @@ function afficherPanier() {
         } else if (nomLower.includes('panacota')) {
             imageSrc = 'pizza2.png';
         } else {
-            imageSrc = 'panetton.png'; // Image par défaut
+            imageSrc = 'erreur.png'; // Image par défaut
         }
         
         pizzaCard.innerHTML = `

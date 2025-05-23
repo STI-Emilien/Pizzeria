@@ -100,7 +100,7 @@ function afficherPanier() {
         } else if (nomLower.includes('bissone')) {
             imageSrc = 'Bissone.png';
         } else if (nomLower.includes('forestière')) {
-            imageSrc = 'forêstiere.png';
+            imageSrc = 'Forêstière.png';
         } else if (nomLower.includes('chorizo')) {
             imageSrc = 'Chorizo.png';
         } else if (nomLower.includes('norvégienne')) {
@@ -116,7 +116,7 @@ function afficherPanier() {
         } else if (nomLower.includes('panettone')) {
             imageSrc = 'panetton.png';
         } else if (nomLower.includes('panacota')) {
-            imageSrc = 'panacota.png';
+            imageSrc = 'panar.png';
         } else {
             imageSrc = 'pizza-default.png'; // Image par défaut
         }
